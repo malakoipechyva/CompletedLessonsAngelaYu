@@ -43,7 +43,6 @@ class TodoListViewController: UITableViewController {
     itemArray[indexPath.row].done = !itemArray[indexPath.row].done
     
     tableView.reloadData()
-
     tableView.deselectRow(at: indexPath, animated: true)
   }
 
