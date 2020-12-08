@@ -47,7 +47,9 @@ class TodoListViewController: UITableViewController, UISearchBarDelegate {
     itemArray[indexPath.row].done = !itemArray[indexPath.row].done
     
     saveItems()
-     
+
+    tableView.reloadData()
+
     tableView.deselectRow(at: indexPath, animated: true)
   }
 
