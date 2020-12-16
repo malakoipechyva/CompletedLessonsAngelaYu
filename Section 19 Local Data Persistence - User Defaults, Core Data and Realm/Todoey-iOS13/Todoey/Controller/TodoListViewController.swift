@@ -8,8 +8,10 @@
 
 import UIKit
 import RealmSwift
+import ChameleonFramework
 
 class TodoListViewController: SwipeTableViewController {
+  @IBOutlet weak var searchBar: UISearchBar!
   
   let realm = try! Realm()
 
@@ -22,8 +24,27 @@ class TodoListViewController: SwipeTableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+      tableView.separatorStyle = .none
+      
     }
+  
+  override func viewWillAppear(_ animated: Bool) {
+    
+    if let hexColor = selectedCategory?.color {
+      title = selectedCategory?.name
+      guard let navBar = navigationController?.navigationBar else {
+        return
+      }
+      if let navBarColor = UIColor(hexString: hexColor) {
+        navBar.backgroundColor = navBarColor
+        navBar.tintColor = ContrastColorOf(navBarColor, returnFlat: true)
+        navBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor : ContrastColorOf(navBarColor, returnFlat: true)]
+        searchBar.barTintColor = navBarColor
+        
+      }
+      
+    }
+  }
   //MARK: - TableView Datasource Methods
   override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return todoItems?.count ?? 1
@@ -34,6 +55,11 @@ class TodoListViewController: SwipeTableViewController {
     
     if let item = todoItems?[indexPath.row] {
       cell.textLabel?.text = item.title
+      if let color = UIColor(hexString: selectedCategory!.color)?.darken(byPercentage: CGFloat(indexPath.row) / CGFloat(todoItems!.count)) {
+        cell.backgroundColor = color
+        cell.textLabel?.textColor = ContrastColorOf(color, returnFlat: true)
+      }
+      
       cell.accessoryType = item.done ? .checkmark : .none
     } else {
       cell.textLabel?.text = "No Items added"
