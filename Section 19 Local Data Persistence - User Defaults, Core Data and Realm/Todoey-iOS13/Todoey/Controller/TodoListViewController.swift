@@ -9,7 +9,7 @@
 import UIKit
 import RealmSwift
 
-class TodoListViewController: UITableViewController {
+class TodoListViewController: SwipeTableViewController {
   
   let realm = try! Realm()
 
@@ -30,8 +30,7 @@ class TodoListViewController: UITableViewController {
   }
   
   override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    
-    let cell = tableView.dequeueReusableCell(withIdentifier: "ToDoItemCell", for: indexPath)
+    let cell = super.tableView(tableView, cellForRowAt: indexPath)
     
     if let item = todoItems?[indexPath.row] {
       cell.textLabel?.text = item.title
@@ -55,7 +54,6 @@ class TodoListViewController: UITableViewController {
         print("error saving done status: \(error.localizedDescription)")
       }
     }
-    
     
     tableView.reloadData()
     tableView.deselectRow(at: indexPath, animated: true)
@@ -98,10 +96,21 @@ class TodoListViewController: UITableViewController {
   func loadItems() {
     todoItems = selectedCategory?.items.sorted(byKeyPath: "title", ascending: true)
 
-
     tableView.reloadData()
   }
   
+  
+  override func updateModel(at indexPath: IndexPath) {
+    if let itemForDeletion = self.todoItems?[indexPath.row] {
+      do {
+        try self.realm.write {
+          self.realm.delete(itemForDeletion)
+        }
+      } catch {
+        print("Deletion Error \(error)")
+      }
+    }
+  }
 }
 
 extension TodoListViewController: UISearchBarDelegate {
