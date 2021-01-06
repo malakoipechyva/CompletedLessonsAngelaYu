@@ -16,21 +16,34 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="eFx-HG-ck9">
-                                <rect key="frame" x="0.0" y="88" width="414" height="808"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="eFx-HG-ck9">
+                                <rect key="frame" x="0.0" y="88" width="414" height="414"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="eFx-HG-ck9" secondAttribute="height" multiplier="1:1" id="RrZ-rS-eU7"/>
+                                </constraints>
                             </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="3rz-vx-zJ6">
+                                <rect key="frame" x="20" y="510" width="374" height="352"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" systemColor="systemGreenColor"/>
                         <constraints>
-                            <constraint firstAttribute="bottom" secondItem="eFx-HG-ck9" secondAttribute="bottom" id="4cO-EQ-wsj"/>
-                            <constraint firstItem="eFx-HG-ck9" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="P5I-jz-KdC"/>
-                            <constraint firstItem="eFx-HG-ck9" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="UCd-Kl-EeH"/>
-                            <constraint firstItem="eFx-HG-ck9" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="mYf-XL-eoe"/>
+                            <constraint firstItem="3rz-vx-zJ6" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="Euv-UM-gHS"/>
+                            <constraint firstItem="eFx-HG-ck9" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="NHs-19-R9g"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="3rz-vx-zJ6" secondAttribute="trailing" constant="20" id="OJi-Jp-j9r"/>
+                            <constraint firstItem="3rz-vx-zJ6" firstAttribute="top" secondItem="eFx-HG-ck9" secondAttribute="bottom" constant="8" symbolic="YES" id="Wr5-gJ-ZJW"/>
+                            <constraint firstItem="3rz-vx-zJ6" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="Xy2-mq-Spq"/>
+                            <constraint firstItem="eFx-HG-ck9" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="aX3-JC-adb"/>
+                            <constraint firstItem="eFx-HG-ck9" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="hg2-vf-dTJ"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="xbA-AH-ais">
                         <barButtonItem key="rightBarButtonItem" systemItem="camera" id="SCG-Zk-dKh">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
                                 <action selector="cameraTapped:" destination="BYZ-38-t0r" id="hZw-jO-acv"/>
                             </connections>
@@ -38,6 +51,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="imageView" destination="eFx-HG-ck9" id="GMc-eI-ZBt"/>
+                        <outlet property="label" destination="3rz-vx-zJ6" id="LZc-0d-vuu"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -52,6 +66,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="3yL-8M-vPU">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" red="0.14684632419999999" green="0.25879639389999998" blue="0.27839306000000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -64,8 +79,8 @@
         </scene>
     </scenes>
     <resources>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        <systemColor name="systemGreenColor">
+            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
